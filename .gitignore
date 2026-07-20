@@ -75,3 +75,6 @@ devtools_options.yaml
 # FVM Version Cache
 .fvm/
 .fvmrc
+
+# Build secrets
+keystore_base64.txt

@@ -392,6 +392,13 @@ class GlobalState {
     )) {
       return;
     }
+    // Android TV 上遥控器无法操作对话框按钮，直接跳过免责声明
+    if (system.isAndroid) {
+      container
+          .read(appSettingProvider.notifier)
+          .update((state) => state.copyWith(disclaimerAccepted: true));
+      return;
+    }
     final isDisclaimerAccepted = await showDisclaimer();
     if (!isDisclaimerAccepted) {
       await container.read(systemActionProvider.notifier).handleExit();
